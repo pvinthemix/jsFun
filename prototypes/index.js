@@ -60,7 +60,10 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map((kittie) => {
+      kittie.age += 2;
+      return kittie;
+    });
     return result;
   }
 };
