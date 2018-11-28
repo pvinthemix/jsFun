@@ -53,7 +53,7 @@ const kittyPrompts = {
     //   name: 'Felicia',
     //   age: 4,
     //   color: 'grey'
-    // },
+    // }, 
     // {
     //   name: 'Tiger',
     //   age: 7,
