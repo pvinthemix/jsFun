@@ -297,7 +297,7 @@ const classPrompts = {
     // ]
 
     const result = classrooms.filter((classroom) => {
-      return classroom.program.includes('FE')
+      return classroom.program.includes('FE');
     });
     return result;
 
