@@ -38,7 +38,7 @@ const kittyPrompts = {
     // Sort the kitties by their age
 
     const result = kitties.sort((kittieB, kittieA) => {
-      return kittieB.age - kittieA.age;
+      return kittieA.age - kittie.age;
     });
     return result;
 
@@ -95,7 +95,16 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((obj, currentClub) => {
+      currentClub.members.forEach((member) => {
+        if (!obj[member]) {
+          obj[member] = [currentClub.club];
+        } else {
+          obj[member].push(currentClub.club);
+        }
+      });
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -131,7 +140,13 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map((currentMod) => {
+      const obj = {
+        mod: currentMod.mod,
+        studentsPerInstructor: currentMod.students / currentMod.instructors
+      };
+      return obj;
+    });
     return result;
 
     // Annotation:
@@ -166,7 +181,13 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map((currentCake) => {
+      const obj = {
+        flavor: currentCake.cakeFlavor,
+        inStock: currentCake.inStock
+      };
+      return obj;
+    });
     return result;
 
     // Annotation:
@@ -194,7 +215,9 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter((currentCake) => {
+      return !currentCake.inStock;
+    });
     return result;
 
     // Annotation:
@@ -205,7 +228,10 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((sum, currentCake) => {
+      sum += currentCake.inStock;
+      return sum;
+    }, 0);
     return result;
 
     // Annotation:
