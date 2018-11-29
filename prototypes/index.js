@@ -296,7 +296,9 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.filter((classroom) => {
+      return classroom.program.includes('FE')
+    });
     return result;
 
     // Annotation:
@@ -311,7 +313,14 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((obj, classroom) => {
+      if (classroom.program.includes('FE')) {
+        obj.feCapacity += classroom.capacity;
+      } else {
+        obj.beCapacity += classroom.capacity;
+      }
+      return obj;
+    }, { feCapacity: 0, beCapacity: 0 });
     return result;
 
     // Annotation:
@@ -321,7 +330,10 @@ const classPrompts = {
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((classroomA, classroomB) => {
+      return classroomA.capacity - classroomB.capacity;
+    });
+
     return result;
 
     // Annotation:
@@ -351,7 +363,10 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((sum, brewery) => {
+      sum += brewery.beers.length;
+      return sum;
+    }, 0);
     return result;
 
     // Annotation:
@@ -367,7 +382,9 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.map((brewery) => {
+      return { name: brewery.name, beerCount: brewery.beers.length };
+    });
     return result;
 
     // Annotation:
@@ -427,7 +444,16 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.map((instructor) => {
+      const matchingCohort = cohorts.find((currentCohort) => {
+        return currentCohort.module === instructor.module;
+      });
+      return {
+        name: instructor.name,
+        studentCount: matchingCohort.studentCount
+      };
+    });
+    
     return result;
 
     // Annotation:
