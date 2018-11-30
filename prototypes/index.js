@@ -36,9 +36,9 @@ const kittyPrompts = {
 
   sortByAge() {
     // Sort the kitties by their age
-
-    const result = kitties.sort((kittieB, kittieA) => {
-      return kittieB.age - kittieA.age;
+    let sortedKitties = [...kitties];
+    const result = sortedKitties.sort((kittieB, kittieA) => {
+      return kittieA.age - kittieB.age;
     });
     return result;
 
@@ -60,7 +60,7 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = kitties.map((kittie) => {
+    const result = sortedKitties.map((kittie) => {
       kittie.age += 2;
       return kittie;
     });
