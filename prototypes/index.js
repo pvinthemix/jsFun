@@ -216,7 +216,7 @@ const cakePrompts = {
     // ]
 
     const result = cakes.filter((currentCake) => {
-      return !currentCake.inStock;
+      return currentCake.inStock > 0;
     });
     return result;
 
@@ -243,7 +243,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((arr, currentCake) => {
+      currentCake.toppings.forEach((topping) => {
+        if (!arr.includes(topping)) {
+          arr.push(topping);
+        }
+      });
+      return arr;
+    }, []);
     return result;
 
     // Annotation:
@@ -261,7 +268,16 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((obj, currentCake) => {
+      currentCake.toppings.forEach((topping) => {
+        if (!obj[topping]) {
+          obj[topping] = 1;
+        } else {
+          obj[topping]++;
+        }
+      });
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -396,8 +412,13 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+    const result = breweries.reduce((arr, currentBrewery) => {
+      arr = arr.concat(currentBrewery.beers);
+      return arr;
+    }, []).sort((beerA, beerB) => {
+      return beerB.abv - beerA.abv;
+    });
+    return result[0];
 
     // Annotation:
     // Write your annotation here as a comment
@@ -467,7 +488,14 @@ const turingPrompts = {
     // cohort1804: 10.5
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cohorts.reduce((obj, cohort) => {
+      let cohortName = `cohort${cohort.cohort}`;
+      let matchingModule = instructors.filter((instructor) => {
+        return instructor.module === cohort.module;
+      });
+      obj[cohortName] = cohort.studentCount / matchingModule.length;
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -484,7 +512,17 @@ const turingPrompts = {
     //   Pam: [2, 4]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((obj, instructor) => {
+      obj[instructor.name] = [];
+      cohorts.forEach((cohort) => {
+        instructor.teaches.forEach((subject) => {
+          if (cohort.curriculum.includes(subject) && !obj[instructor.name].includes(cohort.module)) {
+            obj[instructor.name].push(cohort.module);
+          }
+        });
+      });
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -501,7 +539,16 @@ const turingPrompts = {
     //   recursion: [ 'Pam', 'Leta' ]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((obj, instructor) => {
+      instructor.teaches.forEach((subject) => {
+        if (!obj[subject]) {
+          obj[subject] = [instructor.name];
+        } else {
+          obj[subject].push(instructor.name);
+        }
+      });
+      return obj;
+    }, {});
     return result;
 
     // Annotation:
@@ -535,8 +582,20 @@ const bossPrompts = {
     //   { bossName: 'Ursula', sidekickLoyalty: 20 },
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
+    let bossNameArr = Object.keys(bosses);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = bossNameArr.map((boss) => {
+      let obj = {};
+      obj.bossName = bosses[boss].name;
+      obj.sidekickLoyalty = 0;
+      sidekicks.forEach(sidekick => {
+        if (obj.bossName === sidekick.boss) {
+          obj.sidekickLoyalty += sidekick.loyaltyToBoss;
+        }
+      });
+      return obj;
+    });
+    
     return result;
 
     // Annotation:

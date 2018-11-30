@@ -200,6 +200,7 @@ const scope = {
 
     function petDog() {
       // Log A: dog - Spot
+      
 
       if (dog === 'Spot') {
         let dog = 'Fluffy';
