@@ -25,7 +25,7 @@ const kittyPrompts = {
 
     const result = kitties.filter((kittie) => {
       return kittie.color === 'orange';
-    }).map((kittie) => {
+    }).map((kittie)=> {
       return kittie.name;
     });
     return result;
@@ -38,7 +38,7 @@ const kittyPrompts = {
     // Sort the kitties by their age
 
     const result = kitties.sort((kittieB, kittieA) => {
-      return kittieA.age - kittie.age;
+      return kittieB.age - kittieA.age;
     });
     return result;
 

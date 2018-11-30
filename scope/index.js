@@ -325,26 +325,32 @@ const scope = {
 
     function eatSnack() {
       hunger -= 25;
-      // Log A: hunger
+      // Log A: hunger - 75
       gorgeYourself();
 
       function gorgeYourself() {
         const hunger = 0;
-        // Log B: hunger
+        // Log B: hunger - 0
       }
 
-      // Log C: hunger
+      // Log C: hunger - 75
     }
 
     eatSnack();
 
     hunger += 5;
-    // Log D: hunger
+    // Log D: hunger - 80
 
     eatSnack();
-    // Log E: hunger
+    // Log E: hunger - 55
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { A: 75 },
+      { B: 0 },
+      { C: 75 },
+      { D: 80 },
+      { E: 55 }
+    ];
     return result;
 
     // Annotation:
@@ -354,22 +360,22 @@ const scope = {
   exerciseJ() {
     let sandwich = 'ketchup sandwich';
 
-    // Log A: sandwich
+    // Log A: sandwich - ketchup sandwich
 
     const addChipotle = () => {
-      // Log B: toppings
+      // Log B: toppings - chipotle sauce
       var toppings = 'chipotle sauce';
 
       if (toppings === 'chipotle sauce') { 
         sandwich = 'not a mediocre sandwich';
       }
 
-      // Log C: sandwich
+      // Log C: sandwich - not a mediocre sandwich
     };
 
     const addCheese = () => {
       let cheeseTopping = 'gouda';
-      // Log D: cheeseTopping
+      // Log D: cheeseTopping - gouda
 
       const shesTheManReference = () => {
         amandaBynes = 'National Treasure';
@@ -385,7 +391,14 @@ const scope = {
     // Log E: sandwich
     // Log F: amandaBynes
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 'ketchup sandwich' },
+      { 'D': 'gouda' },
+      { 'B': undefined },
+      { 'C': 'not a mediocre sandwich' },
+      { 'E': 'not a mediocre sandwich' },
+      { 'F': 'National Treasure' }
+    ];
     return result;
 
     // Annotation:
@@ -399,14 +412,17 @@ const scope = {
       if (num > 5) {
         num = 7;
       }
-      // Log A: num
+      // Log A: num - 7
     }
 
     foo();
 
-    // Log B: num
+    // Log B: num - 
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 7 },
+      { 'B': 7 }
+    ];
     return result;
 
     // Annotation:
@@ -426,19 +442,23 @@ const scope = {
           let grade = 97;
         }
 
-        // Log A: grade
+        // Log A: grade - 95
       }
 
       addPoints();
 
-      // Log B: grade
+      // Log B: grade - 90
     }
 
     losePoints();
 
-    // Log C: grade
+    // Log C: grade - 90
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 95 },
+      { 'B': 90 },
+      { 'C': 90 }
+    ];
     return result;
 
     // Annotation:
@@ -449,22 +469,27 @@ const scope = {
     var num = 5;
 
     function first() {
-      // Log A: num
+      // Log A: num - 5
       num = 6;
-      // Log B: num
+      // Log B: num - 6
     }
 
     function second() {
-      // Log C: num
+      // Log C: num - reference error
       let num = 7;
     }
 
     first();
     second();
 
-    // Log D: num
+    // Log D: num - 6
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 5 },
+      { 'B': 6 },
+      { 'C': 'reference error' },
+      { 'D': 6 }
+    ];
     return result;
 
     // Annotation:
@@ -476,7 +501,7 @@ const scope = {
 
     function changeInstructor() {
 
-      // Log A: instructor
+      // Log A: instructor - Pam
 
       if (instructor === 'Brittany') {
         const instructor = 'Nathaniel';
@@ -484,7 +509,7 @@ const scope = {
         let instructor = 'Brittany';
       }
 
-      // Log B: instructor
+      // Log B: instructor - Pam
 
       function rename() {
         instructor = 'Louisa';
@@ -497,13 +522,19 @@ const scope = {
 
     }
 
-    // Log E: instructor
+    // Log E: instructor - Pam
 
     changeInstructor();
 
     // Log F: instructor
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'E': 'Pam' },
+      { 'A': 'Pam' },
+      { 'B': 'Pam' },
+      { 'D': 'Louisa' },
+      { 'F': 'Louisa' }
+    ];
     return result;
 
     // Annotation:
@@ -518,11 +549,15 @@ const scope = {
       var shoe = 'boot';
     }
 
-    // Log B: shoe
+    // Log B: shoe - flipflop
     putOnShoe();
     // Log C: shoe
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'B': 'flipflop' },
+      { 'A': undefined },
+      { 'C': 'flipflop' }
+    ];
     return result;
 
     // Annotation:
@@ -533,7 +568,7 @@ const scope = {
     let lunch;
     function orderLunch() {
       if (lunch) {
-        // Log A: lunch
+        // Log A: lunch - undefined
         let lunch = 'sandwich';
       }
 
@@ -541,12 +576,12 @@ const scope = {
         lunch = 'soup';
       }
 
-      // Log B: lunch
+      // Log B: lunch - soup
     }
 
     orderLunch();
 
-    // Log C: lunch
+    // Log C: lunch - soup
 
     const result = 'REPLACE WITH YOUR RESULT HERE';
     return result;
