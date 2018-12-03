@@ -38,7 +38,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We start off in the creation phase and the interpreter sees 3 global declarations and sets them to undefined. Next it sees a function called changePerson and sets the label to changePerson and sets its value to a function definition. We then move into the execution phase and move down to line 28 where changePerson is invoked. We move back up to line 7 where the change person function is declared. Within the function we have a conditional statement that says if personA is strictly equal to 'Paul' then execute the line of code that is block scoped. Within the block scope we create a new global variable and set the value to Cardi B. We then invoke the beautifyPerson function and move down to line 13. Within the function we consoleLog person B which is Ben. Next we move to line 16 where there is another conditional that states if personB includes B then execute the block below. We then reassign personB to person (now CardiB) and then reassign person C to person B (now CardiB again) which is the next console log. Next we reassign personC to personA. The next console log on line 25 results in CardiB. We exit out of the changePerson function and consolelog personC on line 30 which is now Paul from the last reassignment.
   },
 
   exerciseB() {
@@ -77,7 +77,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We start off in the creation phase and declare a variable called number where the value is undefined. We then create a function called numberFunction where the value is a function definition. We move down to line 67 where numberFunction is invoked and then back up to line 47 where it is declared and enter the execution phase. Within numberFunction we have a functionally scoped variable named number that is assigned the value of 75. On line 50 we have a conditional statement that says if number is equal to 75 then execute the block below it. Within the if block we have a block scoped variable called number assigned the value of 28. On line 54 we console log number which is 75 because it is functionally scoped. Move down to line 62 where new number is invoked and then back up to line 56 where newNumber is declared. Within newNumber there is a a variable called number with a declaration and assigned the value of 64. This variable moves up the scope chain and reassigns the value of number on line 48 within numberFunction. We consolelog number on line 59 and return 64. We exit newNumber. On line 64 we console log number and return 64. We exit numberFunction and the console log on line 69 returns 30 from the global scope.
   },
 
   exerciseC() {
@@ -90,22 +90,22 @@ const scope = {
         let greeting = 'Howdy';
       }
 
-      // Log A: greeting - Yo
+      // Log A: greeting - 
 
       function newPhrase() {
         greeting = 'Hey';
 
-        // Log B: greeting - Hey
+        // Log B: greeting - 
       }
 
       newPhrase();
 
-      // Log C: greeting - Hey
+      // Log C: greeting - 
     }
 
     greetingFunction();
 
-    // Log D: greeting - Hello
+    // Log D: greeting - 
 
     const result = [
       { 'A': 'Yo' },
@@ -116,7 +116,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Start off by entering the creation phase where greeting is declared and has a value of undefined. Next, move down to line 86 where greetingFunction is declared and given a value of a function definition. Next you move to line 106 where greetingFunction is invoked and then back to line 86 where it is declared. Within greeting function we have a functionally scope variabled named greeting that has the value of Yo. After we have a conditional statement that results in true. Within the block we have a new variable called greeting that is assigned the value of Howdy. On line 93 we console log Yo. Next we move down to line 101 where newPhrase is invoked and back to line 95 where it is declared. Within the function we have a new variable called greeting that is assigned the value of hey. This variable moves up the scope chain and reassigns yo on line 87. We console log on line98 and get Hey. Console log on line 103 results in the same Hey. We exit the greetingFunction and on line 108 we console log again adn get hello from the global space.
   },
 
   exerciseD() {
@@ -171,17 +171,17 @@ const scope = {
           let name = 'Brittany';
         }
 
-        // Log A: name - Nathaniel
+        // Log A: name - 
       }
 
-      // Log B: name - Nathaniel
+      // Log B: name - 
     }
 
-    // Log C: name - Brittany
+    // Log C: name - 
 
     sayName();
 
-    // Log D: name - Brittany
+    // Log D: name - 
 
     const result = [
       { 'C': 'Brittany' },
@@ -192,7 +192,7 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We start off in the creation phase and declare a variabled called name that is undefined. Next we declared a function called sayName that is given the value of a function definition. We console log on line 180 and get Brittany from the global scope. Next we invoke sayName and move back to line 164. Within sayName we have a functional scoped variable assigned the value of Pam. Next we have a if block that with a conditional that results in true, name is assigned to Nathaniel and then moves up the scope chain and reassign the value on line 165 to Nathaniel. On line 170 we have another if block that results in true and has a block scoped variable assigned the value of brittany. On line 174 we console log and get Nathaniel. On line 177 we console log and get Nathaniel again because we are in the same function. We exit say name and console log on line 184 where we get Brittany in the global scope. 
   },
 
   exerciseF() {
